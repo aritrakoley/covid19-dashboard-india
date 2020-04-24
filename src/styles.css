@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import "assets\css\bootstrap.css";
-@import "assets\css\custom_bootstrap_theme.css";
+@import "assets/css/bootstrap.css";
+@import "assets/css/custom_bootstrap_theme.css";
 
 body {
     margin: 0;
