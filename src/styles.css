@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import "assets\css\bootstrap.css";
+@import "assets\css\custom_bootstrap_theme.css";
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    background-image: linear-gradient(to right, white, var(--success));
+  }

@@ -1,0 +1,11 @@
+<div class="plot-group border border-secondary p-2" style="width: 100%; border-radius: 15px;">
+      
+  <plotly-plot *ngIf="data"
+      [data]="graph.data" 
+      [layout]="graph.layout" 
+      [useResizeHandler]="true" 
+      [style]="{position: 'relative', width: '100%', height: '100%'}">
+  </plotly-plot>
+
+</div>
+
