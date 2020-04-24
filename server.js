@@ -5,4 +5,4 @@ const app = express();
 app.use(express.static(__dirname + '/dist/covid19-dashboard-india'));
 
 // Start the app by listening on the default Heroku port
-app.listen(8080, console.log("Server Running..."));
+app.listen(process.env.PORT || 8080, console.log("Server Running..."));
