@@ -12,25 +12,47 @@ export class PlotBComponent implements OnInit {
 
   orderBy = 'confirmed';
   dsc = '1';
-  statesBr;
-  confirmed;
-  recovered;
-  deceased;
   graph;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.statesBr = this.data.states.map((label) => {
+    this.sortAndDisplay();
+  }
+
+  sortAndDisplay() {
+    let dataArr = [];
+    const statesBr = this.data.states.map((label) => {
       return label.replace(/ /g, '<br>');
     });
 
-    this.confirmed = {
+    for (let i = 0; i < statesBr.length; i++) {
+      dataArr[i] = {
+        state: statesBr[i],
+        confirmed: this.data.confirmed[i],
+        recovered: this.data.recovered[i],
+        deceased: this.data.deceased[i]
+      };
+    }
+
+    dataArr = dataArr.sort((a, b) => {
+      return (this.dsc === '1') ? (a[this.orderBy] - b[this.orderBy]) : (b[this.orderBy] - a[this.orderBy]);
+    });
+
+    let c = [], r = [], d = [];
+    for (let i = 0; i < statesBr.length; i++) {
+      statesBr[i] = dataArr[i].state;
+      c[i] = dataArr[i].confirmed;
+      r[i] = dataArr[i].recovered;
+      d[i] = dataArr[i].deceased;
+    }
+
+    const confirmed = {
       name: 'Confirmed',
       type: 'bar',
       width: 0.6,
-      x: this.data.confirmed,
-      y: this.statesBr,
+      x: c,
+      y: statesBr,
       orientation: 'h',
       marker: {
         color: 'rgba(0, 74, 140, 0.4)',
@@ -38,12 +60,12 @@ export class PlotBComponent implements OnInit {
       }
     };
 
-    this.recovered = {
+    const recovered = {
       name: 'Recovered',
       type: 'bar',
       width: 0.7,
-      x: this.data.recovered,
-      y: this.statesBr,
+      x: r,
+      y: statesBr,
       orientation: 'h',
       marker: {
         color: 'rgba(0, 74, 140, 0.7)',
@@ -51,12 +73,12 @@ export class PlotBComponent implements OnInit {
       }
     };
 
-    this.deceased = {
+    const deceased = {
       name: 'Deceased',
       type: 'bar',
       width: 0.8,
-      x: this.data.deceased,
-      y: this.statesBr,
+      x: d,
+      y: statesBr,
       orientation: 'h',
       marker: {
         color: 'rgba(0, 74, 140, 1)',
@@ -65,7 +87,7 @@ export class PlotBComponent implements OnInit {
     };
 
     this.graph = {
-      data: [this.confirmed, this.recovered, this.deceased],
+      data: [confirmed, recovered, deceased],
       layout: {
         barmode: 'stack',
         autosize: true,
@@ -84,83 +106,6 @@ export class PlotBComponent implements OnInit {
         height: (this.data.confirmed.length * 50)
       }
     };
-
-    this.selectOrder();
-  }
-
-  removeTransforms() {
-    delete this.graph.data[0].transforms;
-    delete this.graph.data[1].transforms;
-    delete this.graph.data[2].transforms;
-  }
-
-  selectOrder() {
-    this.removeTransforms();
-
-    if (this.orderBy === 'confirmed') {
-      this.graph.data = [this.confirmed, this.recovered, this.deceased];
-      this.graph.data[0].transforms = [{
-        type: 'sort',
-        target: 'y',
-        order: ((this.dsc === '1') ? 'descending' : 'ascending')
-      }];
-      console.log({ 'a': this.orderBy, 'b': this.dsc, 'c': this.graph.data });
-    }
-    else if (this.orderBy === 'recovered') {
-      console.log('RECOVERED');
-      this.graph.data = [this.recovered, this.confirmed, this.deceased];
-      this.graph.data[0].transforms = [{
-        type: 'sort',
-        target: 'y',
-        order: ((this.dsc === '1') ? 'descending' : 'ascending')
-      }];
-      console.log({ 'a': this.orderBy, 'b': this.dsc, 'c': this.graph.data });
-    }
-    else if (this.orderBy === 'deceased') {
-      console.log('DECEASED');
-      this.graph.data = [this.deceased, this.recovered, this.confirmed];
-      this.graph.data[0].transforms = [{
-        type: 'sort',
-        target: 'y',
-        order: ((this.dsc === '1') ? 'descending' : 'ascending')
-      }];
-      console.log({ 'a': this.orderBy, 'b': this.dsc, 'c': this.graph.data });
-    }
+    // console.log(this.graph);
   }
 }
-
-
-
-
-// sortData() {
-//   let arr = [];
-
-//   //re-arrange data
-//   for (let i = 0; i < this.statesBr.length; i++) {
-//     arr[i] = {
-//       state: this.statesBr[i],
-//       confirmed: this.data.confirmed[i],
-//       recovered: this.data.recovered[i],
-//       deceased: this.data.deceased[i]
-//     }
-//   }
-//   console.log(arr);
-
-//   //sort based on orderBy and dsc
-//   arr = arr.sort((a, b) => {
-//     return a[this.orderBy] - b[this.orderBy];
-//   });
-
-//   if (this.dsc === '1') {
-//     arr.reverse();
-//   }
-
-//   for (let i = 0; i < this.statesBr.length; i++)
-//   {
-//     this.statesBr[i] = arr[i].state;
-//     this.data.confirmed[i] = arr[i].confirmed;
-//     this.data.recovered[i] = arr[i].recovered;
-//     this.data.deceased[i] = arr[i].deceased;
-//   }
-
-// }
