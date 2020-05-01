@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -10,14 +11,43 @@ export class PlotBComponent implements OnInit {
 
   @Input() data;
 
-  orderBy = 'confirmed';
-  dsc = '1';
-  graph;
+  public orderBy = 'confirmed';
+  public dsc = '1';
+  public graph;
+  public graph2: any;
+  public selected_state: string;
 
-  constructor() { }
+  constructor(
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit(): void {
     this.sortAndDisplay();
+  }
+
+  open(e, content) {
+    console.log(content);
+    console.log(e);
+    this.selected_state = e.points[0].label.replace('<br>', ' ');
+    this.graph2 = {
+      data: [{
+        type: 'pie',
+        values: [ e.points[0].x, e.points[1].x, e.points[2].x ],
+        labels: [e.points[0].data.name, e.points[1].data.name, e.points[2].data.name],
+        textinfo: 'value+percent'
+      }],
+
+      layout: {
+        title: "State Summary",
+        autosize: true
+      }
+    };
+
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      // this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      // this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
   }
 
   sortAndDisplay() {
