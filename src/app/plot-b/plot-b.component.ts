@@ -34,18 +34,25 @@ export class PlotBComponent implements OnInit {
         type: 'pie',
         values: [ e.points[0].x, e.points[1].x, e.points[2].x ],
         labels: [e.points[0].data.name, e.points[1].data.name, e.points[2].data.name],
+        marker: {
+          colors: [
+            'rgba(0, 74, 140, 0.7)', //confirmed
+            'rgba(0, 140, 74, 0.7)',      //recovered
+            'rgba(140, 20, 20, 0.7)'     //deceased
+          ]
+        },
         textinfo: 'value+percent'
       }],
 
       layout: {
-        title: "State Summary",
+        title: this.selected_state,
         autosize: true,
         paper_bgcolor: 'rgba(0,0,0,0)',
         plot_bgcolor: 'rgba(0,0,0,0)',
         font: {
           // family: 'Courier New, monospace',
           size: 15,
-          color: '#fff'
+          color: '#000'
         }
       }
     };
@@ -105,7 +112,7 @@ export class PlotBComponent implements OnInit {
       y: statesBr,
       orientation: 'h',
       marker: {
-        color: 'rgba(0, 74, 140, 0.7)',
+        color: 'rgba(0, 140, 74, 0.7)',
         line: { color: 'rgba(0, 74, 140, 1)', width: 2 }
       }
     };
@@ -118,7 +125,7 @@ export class PlotBComponent implements OnInit {
       y: statesBr,
       orientation: 'h',
       marker: {
-        color: 'rgba(0, 74, 140, 1)',
+        color: 'rgba(140, 20, 20, 0.7)',
         line: { color: 'rgba(0, 74, 140, 1)', width: 2 }
       }
     };

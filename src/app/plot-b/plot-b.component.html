@@ -1,4 +1,4 @@
-<div class="plot-group border border-secondary p-2" style="width: 100%; border-radius: 15px;">
+<div class="plot-group border border-dark p-2" style="width: 100%; border-radius: 15px;">
 
   <div class="plot-controls">
     <h6 class="text-dark"><strong>Order By:</strong></h6>
@@ -39,13 +39,13 @@
 <ng-template #content let-modal>
 
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{ selected_state }}</h4>
+    <h4 class="modal-title" id="modal-basic-title">State Summary</h4>
     <button type="button" class="close" (click)="modal.dismiss('cross click')">
-      <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true" class="text-white">&times;</span>
     </button>
   </div>
 
-  <div class="modal-body">
+  <div class="modal-body bg-light">
       <plotly-plot 
           *ngIf="graph2.data"
           [data]="graph2.data"

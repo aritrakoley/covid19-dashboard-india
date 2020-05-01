@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import "assets/css/bootstrap.css"; */
-@import "assets/css/bootstrap_superhero.min.css";
+/* @import "assets/css/bootstrap_superhero.min.css"; */
+@import "assets/css/bootstrap_slate.min.css";
 
 body {
     margin: 0;
@@ -8,5 +9,5 @@ body {
     height: 100%;
     width: 100%;
     max-width: 100%;
-    background-image: linear-gradient(to right, var(--light),  white );
+    background-image: linear-gradient(to right, var(--info), white, var(--info) );
   }
