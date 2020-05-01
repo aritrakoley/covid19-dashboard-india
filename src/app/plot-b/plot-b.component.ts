@@ -39,7 +39,14 @@ export class PlotBComponent implements OnInit {
 
       layout: {
         title: "State Summary",
-        autosize: true
+        autosize: true,
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {
+          // family: 'Courier New, monospace',
+          size: 15,
+          color: '#fff'
+        }
       }
     };
 
@@ -124,6 +131,11 @@ export class PlotBComponent implements OnInit {
         title: 'States Affected',
         paper_bgcolor: 'rgba(0,0,0,0)',
         plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {
+          // family: 'Courier New, monospace',
+          size: 12,
+          color: '#000'
+        },
         margin: {
           l: 90,
           r: 50,

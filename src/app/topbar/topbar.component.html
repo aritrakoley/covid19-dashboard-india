@@ -8,33 +8,33 @@
 
       <ul *ngIf="summary" class="navbar-nav mr-auto">
         <li class="nav-item">
-            <div class="card text-dark border-primary m-1" style="width: inherit; min-width: 8rem;">
-                <div class="card-header text-primary text-center p-1">Total Confirmed</div>
-                <div class="card-body text-primary text-center p-0">
-                <h5 class="card-title font-weight-bold"> {{ summary['total_confirmed'] }}</h5>
+            <div class="card border-info m-1" style="width: inherit; min-width: 8rem;">
+                <div class="card-header text-white text-center p-1">Total Confirmed</div>
+                <div class="card-body text-info text-center p-0">
+                <h5 class="card-title font-info-bold"> {{ summary['total_confirmed'] }}</h5>
                 </div>
             </div>
         </li>
         <li class="nav-item">
-          <div class="card text-dark border-primary m-1" style="width: inherit; min-width: 8rem;">
-              <div class="card-header text-primary text-center p-1">Total Recovered</div>
-              <div class="card-body text-primary text-center p-0">
+          <div class="card border-success m-1" style="width: inherit; min-width: 8rem;">
+              <div class="card-header text-white text-center p-1">Total Recovered</div>
+              <div class="card-body text-success text-center p-0">
               <h5 class="card-title font-weight-bold"> {{ summary['total_recovered'] }}</h5>
               </div>
           </div>
         </li>
         <li class="nav-item">
-          <div class="card text-dark border-primary m-1" style="width: inherit; min-width: 8rem;">
-            <div class="card-header text-primary text-center p-1">Total Deceased</div>
-              <div class="card-body text-primary text-center p-0">
+          <div class="card border-primary m-1" style="width: inherit; min-width: 8rem;">
+            <div class="card-header text-white text-center p-1">Total Deceased</div>
+              <div class="card-body text-danger text-center p-0">
               <h5 class="card-title font-weight-bold"> {{ summary['total_deceased'] }}</h5>
             </div>
           </div>
         </li>
         <li class="nav-item">
-          <div class="card text-dark border-primary m-1" style="width: inherit; min-width: 8rem;">
-            <div class="card-header text-primary text-center p-1">States Affected</div>
-              <div class="card-body text-primary text-center p-0">
+          <div class="card border-info m-1" style="width: inherit; min-width: 8rem;">
+            <div class="card-header text-white text-center p-1">States Affected</div>
+              <div class="card-body text-info text-center p-0">
               <h5 class="card-title font-weight-bold"> {{ summary['states_affected'] }}</h5>
             </div>
           </div>

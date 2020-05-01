@@ -1,16 +1,16 @@
 <div class="plot-group border border-secondary p-2" style="width: 100%; border-radius: 15px;">
 
   <div class="plot-controls">
-    <h6><strong>Order By:</strong></h6>
+    <h6 class="text-dark"><strong>Order By:</strong></h6>
 
     <div ngbRadioGroup [(ngModel)]="orderBy" class="btn-group" >
-      <label ngbButtonLabel class="btn-primary btn-sm">
+      <label ngbButtonLabel class="btn-info btn-sm">
         <input ngbButton (change)="sortAndDisplay()" type="radio" value="confirmed"> Confirmed
       </label>
-      <label ngbButtonLabel class="btn-primary btn-sm">
+      <label ngbButtonLabel class="btn-success btn-sm">
         <input ngbButton (change)="sortAndDisplay()" type="radio" value="recovered"> Recovered
       </label>
-      <label ngbButtonLabel class="btn-primary btn-sm">
+      <label ngbButtonLabel class="btn-danger btn-sm">
         <input ngbButton (change)="sortAndDisplay()" type="radio" value="deceased"> Deceased
       </label>
     </div>
