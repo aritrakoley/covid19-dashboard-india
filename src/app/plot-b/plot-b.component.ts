@@ -80,7 +80,7 @@ export class PlotBComponent implements OnInit {
     const confirmed = {
       name: 'Confirmed',
       type: 'bar',
-      width: 0.6,
+      width: 0.7,
       x: c,
       y: statesBr,
       orientation: 'h',
@@ -106,7 +106,7 @@ export class PlotBComponent implements OnInit {
     const deceased = {
       name: 'Deceased',
       type: 'bar',
-      width: 0.8,
+      width: 0.7,
       x: d,
       y: statesBr,
       orientation: 'h',
