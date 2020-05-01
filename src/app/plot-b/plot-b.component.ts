@@ -131,8 +131,8 @@ export class PlotBComponent implements OnInit {
           t: 50,
           pad: 1
         },
-        xaxis: { showgrid: true },
-        yaxis: { showgrid: true },
+        xaxis: { showgrid: true, fixedrange: true },
+        yaxis: { showgrid: true, fixedrange: true },
         height: (this.data.confirmed.length * 50)
       }
     };
