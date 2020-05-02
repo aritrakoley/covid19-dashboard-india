@@ -36,8 +36,8 @@ export class PlotBComponent implements OnInit {
         labels: [e.points[0].data.name, e.points[1].data.name, e.points[2].data.name],
         marker: {
           colors: [
-            'rgba(0, 74, 140, 0.7)', //confirmed
-            'rgba(0, 140, 74, 0.7)',      //recovered
+            'rgba(255, 150, 0, 0.7)',     //active
+            'rgba(0, 140, 74, 0.7)',     //recovered
             'rgba(140, 20, 20, 0.7)'     //deceased
           ]
         },
@@ -75,7 +75,8 @@ export class PlotBComponent implements OnInit {
         state: statesBr[i],
         confirmed: this.data.confirmed[i],
         recovered: this.data.recovered[i],
-        deceased: this.data.deceased[i]
+        deceased: this.data.deceased[i],
+        active: this.data.active[i]
       };
     }
 
@@ -83,12 +84,13 @@ export class PlotBComponent implements OnInit {
       return (this.dsc === '1') ? (a[this.orderBy] - b[this.orderBy]) : (b[this.orderBy] - a[this.orderBy]);
     });
 
-    let c = [], r = [], d = [];
+    let c = [], r = [], d = [], a = [];
     for (let i = 0; i < statesBr.length; i++) {
       statesBr[i] = dataArr[i].state;
       c[i] = dataArr[i].confirmed;
       r[i] = dataArr[i].recovered;
       d[i] = dataArr[i].deceased;
+      a[i] = dataArr[i].active;
     }
 
     const confirmed = {
@@ -100,6 +102,19 @@ export class PlotBComponent implements OnInit {
       orientation: 'h',
       marker: {
         color: 'rgba(0, 74, 140, 0.4)',
+        line: { color: 'rgba(0, 74, 140, 1)', width: 2 }
+      }
+    };
+
+    const active = {
+      name: 'Active',
+      type: 'bar',
+      width: 0.7,
+      x: a,
+      y: statesBr,
+      orientation: 'h',
+      marker: {
+        color: 'rgba(255, 150, 0, 0.7)',
         line: { color: 'rgba(0, 74, 140, 1)', width: 2 }
       }
     };
@@ -131,7 +146,7 @@ export class PlotBComponent implements OnInit {
     };
 
     this.graph = {
-      data: [confirmed, recovered, deceased],
+      data: [active, recovered, deceased],
       layout: {
         barmode: 'stack',
         autosize: true,

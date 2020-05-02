@@ -26,12 +26,14 @@ export class ContainerComponent implements OnInit {
         states: res['states'],
         confirmed: res['confirmed'],
         deceased: res['deceased'],
-        recovered: res['recovered']
+        recovered: res['recovered'],
+        active: res['active']
       };
       this.summary = {
         total_confirmed: res['total_confirmed'],
         total_deceased: res['total_deceased'],
         total_recovered: res['total_recovered'],
+        total_active: res['total_active'],
         states_affected: res['states'].length
       };
     });

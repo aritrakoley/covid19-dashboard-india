@@ -4,24 +4,36 @@
     <h6 class="text-dark"><strong>Order By:</strong></h6>
 
     <div ngbRadioGroup [(ngModel)]="orderBy" class="btn-group" >
+
       <label ngbButtonLabel class="btn-info btn-sm">
         <input ngbButton (change)="sortAndDisplay()" type="radio" value="confirmed"> Confirmed
       </label>
+
+      <label ngbButtonLabel class="btn-warning btn-sm">
+        <input ngbButton (change)="sortAndDisplay()" type="radio" value="active"> Active
+      </label>
+
       <label ngbButtonLabel class="btn-success btn-sm">
         <input ngbButton (change)="sortAndDisplay()" type="radio" value="recovered"> Recovered
       </label>
+
       <label ngbButtonLabel class="btn-danger btn-sm">
         <input ngbButton (change)="sortAndDisplay()" type="radio" value="deceased"> Deceased
       </label>
+
     </div>
 
+
     <div ngbRadioGroup [(ngModel)]="dsc" class="btn-group ml-md-2" >
+
       <label ngbButtonLabel class="btn-dark btn-sm">
         <input ngbButton (change)="sortAndDisplay()" type="radio" value="0"> Ascending
       </label>
+
       <label ngbButtonLabel class="btn-dark btn-sm">
         <input ngbButton (change)="sortAndDisplay()" type="radio" value="1"> Descending
       </label>
+
     </div>
 
   </div>
