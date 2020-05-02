@@ -16,6 +16,7 @@ export class PlotBComponent implements OnInit {
   public graph;
   public graph2: any;
   public selected_state: string;
+  public selected_state_confirmed: string;
 
   constructor(
     private modalService: NgbModal
@@ -26,26 +27,43 @@ export class PlotBComponent implements OnInit {
   }
 
   open(e, content) {
-    console.log(content);
-    console.log(e);
+    //console.log(content);
+    //console.log(e);
     this.selected_state = e.points[0].label.replace('<br>', ' ');
+    this.selected_state_confirmed = this.data.confirmed[this.data.states.indexOf(this.selected_state)]
+    // console.log(this.selected_state);
+    // console.log(this.selected_state_confirmed);
+
+
+    let vals = [], lbls = [], clrs = [];
+    let clrs_ref = [
+      'rgba(255, 150, 0, 0.7)',     //active
+      'rgba(0, 140, 74, 0.7)',     //recovered
+      'rgba(140, 20, 20, 0.7)'     //deceased
+    ];
+    for (let i = 0; i < e.points.length; i++)
+    {
+      if( e.points[i].x > 0 )
+      {
+        vals.push(e.points[i].x);
+        lbls.push(e.points[i].data.name);
+        clrs.push(clrs_ref[i]);
+      }
+    }
+
     this.graph2 = {
       data: [{
         type: 'pie',
-        values: [ e.points[0].x, e.points[1].x, e.points[2].x ],
-        labels: [e.points[0].data.name, e.points[1].data.name, e.points[2].data.name],
+        values: vals,
+        labels: lbls,
         marker: {
-          colors: [
-            'rgba(255, 150, 0, 0.7)',     //active
-            'rgba(0, 140, 74, 0.7)',     //recovered
-            'rgba(140, 20, 20, 0.7)'     //deceased
-          ]
+          colors: clrs
         },
         textinfo: 'value+percent'
       }],
 
       layout: {
-        title: this.selected_state,
+        title: this.selected_state + " (" + this.selected_state_confirmed + ")",
         autosize: true,
         paper_bgcolor: 'rgba(0,0,0,0)',
         plot_bgcolor: 'rgba(0,0,0,0)',
@@ -84,7 +102,7 @@ export class PlotBComponent implements OnInit {
       return (this.dsc === '1') ? (a[this.orderBy] - b[this.orderBy]) : (b[this.orderBy] - a[this.orderBy]);
     });
 
-    let c = [], r = [], d = [], a = [];
+    let c = [], r = [], d = [], a = [], ann = [];
     for (let i = 0; i < statesBr.length; i++) {
       statesBr[i] = dataArr[i].state;
       c[i] = dataArr[i].confirmed;
@@ -116,7 +134,7 @@ export class PlotBComponent implements OnInit {
       marker: {
         color: 'rgba(255, 150, 0, 0.7)',
         line: { color: 'rgba(0, 74, 140, 1)', width: 2 }
-      }
+      },
     };
 
     const recovered = {
@@ -142,7 +160,9 @@ export class PlotBComponent implements OnInit {
       marker: {
         color: 'rgba(140, 20, 20, 0.7)',
         line: { color: 'rgba(0, 74, 140, 1)', width: 2 }
-      }
+      },
+      // text: c,
+      // textposition: 'auto'
     };
 
     this.graph = {
@@ -167,9 +187,33 @@ export class PlotBComponent implements OnInit {
         },
         xaxis: { showgrid: true, fixedrange: true },
         yaxis: { showgrid: true, fixedrange: true },
-        height: (this.data.confirmed.length * 50)
+        height: (this.data.confirmed.length * 50),
+        // legend: {
+        //   x: 0,
+        //   y: 1.05,
+        //   xanchor: 'right'
+        // }
       }
     };
-    // console.log(this.graph);
+    console.log(this.graph);
   }
 }
+
+
+/* Unused Code
+
+ann[i] = {
+        x: c[i],
+        y: statesBr[i],
+        xref: 'x',
+        yref: 'y',
+        text: String(c[i]),
+        font: {
+          color: "black",
+          size: 14
+        },
+        bgcolor: '',
+        showarrow: false
+      };
+
+*/
