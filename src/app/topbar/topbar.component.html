@@ -8,17 +8,6 @@
 
       <ul *ngIf="summary" class="navbar-nav mr-auto">
         <li class="nav-item">
-          <div class="card border-info m-1" style="width: inherit; min-width: 8rem;">
-
-            <div class="card-header text-white text-center p-1">Total Active</div>
-            <div class="card-body text-warning text-center p-0">
-              <h5 class="card-title font-info-bold"> {{ summary['total_active'] }}</h5>
-            </div>
-
-          </div>
-        </li>
-
-        <li class="nav-item">
             <div class="card border-info m-1" style="width: inherit; min-width: 8rem;">
 
               <div class="card-header text-white text-center p-1">Total Confirmed</div>
@@ -27,6 +16,17 @@
               </div>
 
             </div>
+        </li>
+
+        <li class="nav-item">
+          <div class="card border-info m-1" style="width: inherit; min-width: 8rem;">
+
+            <div class="card-header text-white text-center p-1">Total Active</div>
+            <div class="card-body text-warning text-center p-0">
+              <h5 class="card-title font-info-bold"> {{ summary['total_active'] }}</h5>
+            </div>
+
+          </div>
         </li>
 
         <li class="nav-item">
