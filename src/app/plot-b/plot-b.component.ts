@@ -29,7 +29,7 @@ export class PlotBComponent implements OnInit {
   open(e, content) {
     //console.log(content);
     //console.log(e);
-    this.selected_state = e.points[0].label.replace('<br>', ' ');
+    this.selected_state = e.points[0].label.replace(/<br>/g, ' ');
     this.selected_state_confirmed = this.data.confirmed[this.data.states.indexOf(this.selected_state)]
     // console.log(this.selected_state);
     // console.log(this.selected_state_confirmed);
